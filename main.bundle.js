@@ -1189,8 +1189,8 @@ var UserPageComponent = (function () {
         this.chartHard = [];
         this.chartChlo = [];
         this.myObservable = __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].interval(2000);
-        this.timesPh = ['', '', '', '', '', '', '', '', '', ''];
-        this.amountsPh = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        this.timesPh = [];
+        this.amountsPh = [];
         this.timesTemp = [];
         this.amountsTemp = [];
         this.timesHardness = [];
@@ -1221,7 +1221,6 @@ var UserPageComponent = (function () {
                 ]
             },
             options: {
-                maintainAspectRatio: false,
                 legend: {
                     display: false
                 },

@@ -1515,7 +1515,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/userinfo/userinfo.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<div class=\"container\" id=\"userinfo\">\n\t<div class=\"row\">\n\t\n        \n        \n       <div class=\"col-md-7 col-md-offset-3 \">\n\n<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">  <h4 >User Profile</h4></div>\n   <div class=\"panel-body\">\n       \n    <div class=\"box box-info\">\n        \n            <div class=\"box-body\">\n                     <div class=\"col-sm-12\">\n                     <div  align=\"center\"> <img alt=\"User Pic\" src=\"{{photoUrl}}\" id=\"profile-image1\" class=\"img-circle img-responsive\"> \n                \n                <input id=\"profile-image-upload\" class=\"hidden\" type=\"file\">\n\n                <!--Upload Image Js And Css-->\n           \n              \n   \n                \n                \n                     \n                     \n                     </div>\n              \n              <br>\n    \n              <!-- /input-group -->\n            </div>\n            <div class=\"col-sm-12 text-center\">\n            <h4 style=\"color:#03b1ce;\">{{username}} </h4>\n                         \n            </div>\n            <div class=\"clearfix\"></div>\n            <hr style=\"margin:5px 0 5px 0;\">\n    \n              \n<div class=\"col-sm-6 col-xs-4 tital \" >Name:</div><div class=\"col-sm-6 col-xs-8 wrapText\">{{name}}</div>\n     <div class=\"clearfix\"></div>\n<div class=\"bot-border\"></div>\n\n\n\n<div class=\"col-sm-6 col-xs-4 tital \" >Email:</div><div class=\"col-sm-6 col-xs-8 wrapText\">{{email}}</div>\n\n  <div class=\"clearfix\"></div>\n<div class=\"bot-border\"></div>\n\n<div class=\"col-sm-6 col-xs-4 tital \" >Permission:</div><div class=\"col-sm-6 col-xs-8 wrapText\">{{permission}}</div>\n\n  \n\n            <!-- /.box-body -->\n          </div>\n          <!-- /.box -->\n\n        </div>\n       \n            \n    </div> \n    </div>\n</div>    \n   </div>\n</div>\n\n\n\n\n         "
+module.exports = "<app-navbar></app-navbar>\n<div class=\"container\" id=\"userinfo\">\n\t<div class=\"row\">\n\t\n        \n        \n       <div class=\"col-md-7 col-md-offset-3 \">\n\n<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">  <h4 >User Profile</h4></div>\n   <div class=\"panel-body\">\n       \n    <div class=\"box box-info\">\n        \n            <div class=\"box-body\">\n                     <div class=\"col-sm-12\">\n                     <div  align=\"center\"> <img alt=\"User Pic\" src=\"{{photoUrl}}\" id=\"profile-image1\" class=\"img-circle img-responsive\"> \n                \n                <input id=\"profile-image-upload\" class=\"hidden\" type=\"file\">\n\n                <!--Upload Image Js And Css-->                     \n                     </div>\n              \n              <br>\n    \n              <!-- /input-group -->\n            </div>\n            <div class=\"col-sm-12 text-center\">\n            <h4 style=\"color:#03b1ce;\">{{username}} </h4>\n                         \n            </div>\n            <div class=\"clearfix\"></div>\n            <hr style=\"margin:5px 0 5px 0;\">\n    \n              \n<div class=\"col-sm-6 col-xs-4 tital \" >Name:</div><div class=\"col-sm-6 col-xs-8 wrapText\">{{name}}</div>\n     <div class=\"clearfix\"></div>\n<div class=\"bot-border\"></div>\n\n\n\n<div class=\"col-sm-6 col-xs-4 tital \" >Email:</div><div class=\"col-sm-6 col-xs-8 wrapText\">{{email}}</div>\n\n  <div class=\"clearfix\"></div>\n<div class=\"bot-border\"></div>\n\n<div class=\"col-sm-6 col-xs-4 tital \" >Permission:</div><div class=\"col-sm-6 col-xs-8 wrapText\">{{permission}}</div>\n\n  \n\n            <!-- /.box-body -->\n          </div>\n          <!-- /.box -->\n\n        </div>\n       \n            \n    </div> \n    </div>\n</div>    \n   </div>\n</div>\n\n\n\n\n         "
 
 /***/ }),
 
@@ -1708,12 +1708,12 @@ var DataService = (function () {
         else {
             user = { name: name, password: password, email: email, photoUrl: photoUrl };
         }
-        return this.http.post('https://dry-woodland-67764.herokuapp.com/register', user).map(function (res) { return res.json(); });
+        return this.http.post('https://swarmbackend.herokuapp.com/register', user).map(function (res) { return res.json(); });
     };
     DataService.prototype.login = function (email, password) {
         var user = { email: email, password: password };
         console.log(user);
-        return this.http.post('https://dry-woodland-67764.herokuapp.com/login', user).map(function (res) { return res.json(); })
+        return this.http.post('https://swarmbackend.herokuapp.com/login', user).map(function (res) { return res.json(); })
             .catch(this._errorHandler);
     };
     DataService.prototype._errorHandler = function (error) {
@@ -1725,45 +1725,45 @@ var DataService = (function () {
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/sensors/my', opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/sensors/my', opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.dailyWaterData = function (token) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/readings/last10', opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/readings/last10', opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.getWaterParameters = function (token, idSensor) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/readings/' + idSensor, opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/readings/' + idSensor, opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.getLastWaterParameters = function (token, idSensor, idLastReading) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/readings/' + idSensor + '/' + idLastReading + '/new', opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/readings/' + idSensor + '/' + idLastReading + '/new', opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.getLogedUserInfo = function (token) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/userinfo', opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/userinfo', opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.verifyToken = function (email, token) {
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/users/' + email + '/confirm/' + token).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/users/' + email + '/confirm/' + token).map(function (res) { return res.json(); });
     };
     DataService.prototype.userinfo = function (token) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/userinfo', opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/userinfo', opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.changePassword = function (token, oldPassword, newPassword) {
         var user = { oldPassword: oldPassword, newPassword: newPassword };
@@ -1772,7 +1772,7 @@ var DataService = (function () {
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.put('https://dry-woodland-67764.herokuapp.com/changepassword', user, opts).map(function (res) { return res.json(); });
+        return this.http.put('https://swarmbackend.herokuapp.com/changepassword', user, opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.sendMessage = function (subject, text, token) {
         var message = { subject: subject, text: text };
@@ -1780,49 +1780,49 @@ var DataService = (function () {
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.post('https://dry-woodland-67764.herokuapp.com/contact', message, opts).map(function (res) { return res.json(); });
+        return this.http.post('https://swarmbackend.herokuapp.com/contact', message, opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.getConsumptionDaily = function (token) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/consumption/daily', opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/consumption/daily', opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.getConsumptionWeekly = function (token) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/consumption/weekly', opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/consumption/weekly', opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.getConsumptionMonthly = function (token) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/consumption/monthsbefore/0', opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/consumption/monthsbefore/0', opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.getConsumptionYearly = function (token) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/consumption/yearly', opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/consumption/yearly', opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.getUsers = function (token, page) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/users/page/' + page, opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/users/page/' + page, opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.showUserDataForChange = function (token, id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.get('https://dry-woodland-67764.herokuapp.com/users/' + id, opts).map(function (res) { return res.json(); });
+        return this.http.get('https://swarmbackend.herokuapp.com/users/' + id, opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.changeUserData = function (id, username, password, name, email, token) {
         var user = { id: id, username: username, password: password, name: name, email: email };
@@ -1830,7 +1830,7 @@ var DataService = (function () {
         headers.append('Authorization', 'Bearer ' + token);
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
-        return this.http.put('https://dry-woodland-67764.herokuapp.com/users/', user, opts).map(function (res) { return res.json(); });
+        return this.http.put('https://swarmbackend.herokuapp.com/users/', user, opts).map(function (res) { return res.json(); });
     };
     DataService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),

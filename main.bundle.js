@@ -869,7 +869,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#logoPic{\r\n    padding-top: 20px;\r\n}\r\n\r\nli:hover#liHover {\r\n     background-color:rgb(216, 216, 216);\r\n     padding-left: 20px;\r\n }\r\n\r\nli#liHover{\r\n     \r\n     font-size: 1.1em;\r\n     padding-left: 10px;\r\n }\r\n\r\n label.labelLi{\r\n\r\n    font-weight: normal !important;\r\n    \r\n }\r\n\r\n\r\n\r\n a,label.labelLi,label.labelLo { cursor: pointer; }\r\n\r\n.labelLo{\r\n  transition: 0.5s;\r\n}\r\n\r\n\r\n\r\n@media(max-width:991px){\r\n  \r\n  .dropdown-menu{\r\n    color: rgb(216, 216, 216);\r\n  }\r\n \r\n}\r\n\r\n \r\n", ""]);
+exports.push([module.i, "#logoPic{\r\n    padding-top: 20px;\r\n}\r\n\r\nli:hover#liHover {\r\n     background-color:rgb(216, 216, 216);\r\n     padding-left: 20px;\r\n }\r\n\r\nli#liHover{\r\n     \r\n     font-size: 1.1em;\r\n     padding-left: 10px;\r\n }\r\n\r\n label.labelLi{\r\n\r\n    font-weight: normal !important;\r\n    \r\n }\r\n\r\n a,label.labelLi,label.labelLo { cursor: pointer; }\r\n\r\n.labelLo{\r\n  transition: 0.5s;\r\n}\r\n\r\n\r\n\r\n@media(max-width:768px){\r\n  \r\n  .dropdown-menu{\r\n    color: rgb(216, 216, 216);\r\n  }\r\n \r\n}\r\n\r\n \r\n", ""]);
 
 // exports
 

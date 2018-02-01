@@ -1543,6 +1543,7 @@ var UserinfoComponent = (function () {
     function UserinfoComponent(dataService, router) {
         this.dataService = dataService;
         this.router = router;
+        this.photoUrl = 'http://aiyd.org/wp-content/uploads/2016/09/no-image-icon-hi.png';
     }
     UserinfoComponent.prototype.ngOnInit = function () {
         var _this = this;

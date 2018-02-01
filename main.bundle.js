@@ -1203,6 +1203,38 @@ var UserPageComponent = (function () {
     };
     UserPageComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.chartPh = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"]('ph', {
+            type: 'line',
+            data: {
+                labels: this.timesPh,
+                datasets: [
+                    {
+                        data: this.amountsPh,
+                        backgroundColor: "rgba(71,192,255,0.4)",
+                        borderColor: '#47BEFF',
+                        borderHoverColor: "#0087D1",
+                        pointBoredColor: "#006DA8",
+                        pointHoverBackgroundColor: "#C4C4C4",
+                        pointHoverBorderColor: "#000000",
+                        pointBoredWidth: 1
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [{
+                            display: true
+                        }],
+                    yAxes: [{
+                            display: true
+                        }]
+                }
+            }
+        });
         this.dataService.getAllSensors(JSON.parse(localStorage.getItem('curentUser')).token).subscribe(function (sensors) {
             _this.sensors = sensors;
             for (var _i = 0, sensors_1 = sensors; _i < sensors_1.length; _i++) {
@@ -1217,38 +1249,7 @@ var UserPageComponent = (function () {
                             _this.timesPh.push(jsdate.toLocaleTimeString('en-BG', { hour: 'numeric', minute: 'numeric', second: 'numeric' }));
                             _this.amountsPh.push(reading.amount);
                         }
-                        _this.chartPh = new __WEBPACK_IMPORTED_MODULE_2_chart_js__["Chart"]('ph', {
-                            type: 'line',
-                            data: {
-                                labels: _this.timesPh,
-                                datasets: [
-                                    {
-                                        data: _this.amountsPh,
-                                        backgroundColor: "rgba(71,192,255,0.4)",
-                                        borderColor: '#47BEFF',
-                                        borderHoverColor: "#0087D1",
-                                        pointBoredColor: "#006DA8",
-                                        pointHoverBackgroundColor: "#C4C4C4",
-                                        pointHoverBorderColor: "#000000",
-                                        pointBoredWidth: 1
-                                    }
-                                ]
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                legend: {
-                                    display: false
-                                },
-                                scales: {
-                                    xAxes: [{
-                                            display: true
-                                        }],
-                                    yAxes: [{
-                                            display: true
-                                        }]
-                                }
-                            }
-                        });
+                        _this.chartPh.update();
                     });
                 }
                 if (sensor.type == 'TEMP') {

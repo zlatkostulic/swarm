@@ -1189,8 +1189,8 @@ var UserPageComponent = (function () {
         this.chartHard = [];
         this.chartChlo = [];
         this.myObservable = __WEBPACK_IMPORTED_MODULE_3_rxjs__["Observable"].interval(2000);
-        this.timesPh = [null, null, null, null, null, null, null, null, null, null];
-        this.amountsPh = [null, null, null, null, null, null, null, null, null, null];
+        this.timesPh = ['', '', '', '', '', '', '', '', '', ''];
+        this.amountsPh = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         this.timesTemp = [];
         this.amountsTemp = [];
         this.timesHardness = [];
@@ -1211,6 +1211,8 @@ var UserPageComponent = (function () {
                     _this.dataService.getWaterParameters(JSON.parse(localStorage.getItem('curentUser')).token, sensor.id).subscribe(function (parameters) {
                         var readings = parameters.reverse();
                         _this.lastReadingPhId = parameters[parameters.length - 1].id;
+                        _this.amountsPh = [];
+                        _this.timesPh = [];
                         for (var _i = 0, readings_1 = readings; _i < readings_1.length; _i++) {
                             var reading = readings_1[_i];
                             var jsdate = new Date(reading.time);

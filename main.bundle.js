@@ -1248,8 +1248,8 @@ var UserPageComponent = (function () {
                             _this.timesPh.push(jsdate.toLocaleTimeString('en-BG', { hour: 'numeric', minute: 'numeric', second: 'numeric' }));
                             _this.amountsPh.push(reading.amount);
                         }
-                        _this.chartPh.update();
                     });
+                    _this.chartPh.update();
                 }
                 if (sensor.type == 'TEMP') {
                     _this.dataService.getWaterParameters(JSON.parse(localStorage.getItem('curentUser')).token, sensor.id).subscribe(function (parameters) {

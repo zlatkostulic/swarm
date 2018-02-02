@@ -205,7 +205,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-page/admin-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-md-12>\">\n    <div class=\"table-responsive\">\n           \n                    \n            <table class=\"table table-striped\">\n                    <thead>\n                        <tr class=\"filters\">\n                            <th>Id</th>\n                            <th>Name</th>\n                            <th>Username</th>\n                            <th>Email</th>\n                            <th>Permission</th>\n                            <th></th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        <tr *ngFor=\"let user of users\">\n                            <td width=\"8%\">{{user.id}}</td>\n                            <td width=\"15%\">{{user.name}}</td>\n                            <td width=\"15%\">{{user.username}}</td>\n                            <td width=\"25%\">{{user.email}}</td>\n                            <td width=\"15%\">{{user.permissions}}</td>\n                            <td width=\"5%\"><button (click)=\"redirectToChangeUserData(user.id)\" class=\" btn-xs\">Change </button></td>\n                        </tr>\n                       \n                    </tbody>\n                </table>\n            </div>\n            <button (click)=\"previous()\" [hidden]=\"!(page > 1)\" class=\" btn-sm\">Previous page </button>\n      <button (click)=\"next()\" [hidden]=\"!checkForUsers\" class=\"btn-sm\"> Next page </button>\n         \n        </div>\n    </div>\n    </div>\n\n\n\n\n\n\n"
+module.exports = "<app-navbar></app-navbar>\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-md-12>\">\n    <div class=\"table-responsive\">\n           \n                    \n            <table class=\"table table-striped\">\n                    <thead>\n                        <tr class=\"filters\">\n                            <th>Id</th>\n                            <th>Name</th>\n                            <th>Username</th>\n                            <th>Email</th>\n                            <th>Permission</th>\n                            <th></th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        <tr *ngFor=\"let user of users\">\n                            <td width=\"8%\">{{user.id}}</td>\n                            <td width=\"15%\">{{user.name}}</td>\n                            <td width=\"15%\">{{user.username}}</td>\n                            <td width=\"25%\">{{user.email}}</td>\n                            <td width=\"15%\">{{user.permissions}}</td>\n                            <td width=\"5%\"><button type=\"button\" (click)=\"redirectToChangeUserData(user.id)\" class=\"btn btn-primary btn-xs\">Change </button></td>\n                        </tr>\n                       \n                    </tbody>\n                </table>\n            </div>\n            <button (click)=\"previous()\" [hidden]=\"!(page > 1)\" class=\" btn-sm\">Previous page </button>\n      <button (click)=\"next()\" [hidden]=\"!checkForUsers ||  (page >= countOfUsers / 10)\" class=\"btn-sm\"> Next page </button>\n         \n        </div>\n    </div>\n    </div>\n\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -238,6 +238,7 @@ var AdminPageComponent = (function () {
         this.checkForUsers = false;
     }
     AdminPageComponent.prototype.ngOnInit = function () {
+        var _this = this;
         if (localStorage.getItem('curentUser') == null) {
             this.router.navigate(['/login']);
         }
@@ -247,6 +248,9 @@ var AdminPageComponent = (function () {
             }
             else {
                 this.getUsers();
+                this.dataService.getUsersCount(JSON.parse(localStorage.getItem('curentUser')).token).subscribe(function (count) {
+                    _this.countOfUsers = count;
+                });
             }
         }
     };
@@ -1827,6 +1831,13 @@ var DataService = (function () {
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
         return this.http.get('https://swarmnetbackendusa.herokuapp.com/users/page/' + page, opts).map(function (res) { return res.json(); });
+    };
+    DataService.prototype.getUsersCount = function (token) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
+        headers.append('Authorization', 'Bearer ' + token);
+        var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
+        opts.headers = headers;
+        return this.http.get('https://swarmnetbackendusa.herokuapp.com/users/count', opts).map(function (res) { return res.json(); });
     };
     DataService.prototype.showUserDataForChange = function (token, id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();

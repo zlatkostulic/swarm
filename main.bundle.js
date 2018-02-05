@@ -97,12 +97,14 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_animation_screen_animation_screen_component__ = __webpack_require__("../../../../../src/app/components/animation-screen/animation-screen.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_change_user_data_change_user_data_component__ = __webpack_require__("../../../../../src/app/components/change-user-data/change-user-data.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_angularx_social_login__ = __webpack_require__("../../../../angularx-social-login/angularx-social-login.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_parameters_parameters_component__ = __webpack_require__("../../../../../src/app/components/parameters/parameters.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -150,7 +152,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_14__components_userinfo_userinfo_component__["a" /* UserinfoComponent */],
                 __WEBPACK_IMPORTED_MODULE_15__components_help_help_component__["a" /* HelpComponent */],
                 __WEBPACK_IMPORTED_MODULE_16__components_animation_screen_animation_screen_component__["a" /* AnimationScreenComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__components_change_user_data_change_user_data_component__["a" /* ChangeUserDataComponent */]
+                __WEBPACK_IMPORTED_MODULE_17__components_change_user_data_change_user_data_component__["a" /* ChangeUserDataComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__components_parameters_parameters_component__["a" /* ParametersComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -170,7 +173,8 @@ var AppModule = (function () {
                     { path: 'userinfo', component: __WEBPACK_IMPORTED_MODULE_14__components_userinfo_userinfo_component__["a" /* UserinfoComponent */] },
                     { path: 'help', component: __WEBPACK_IMPORTED_MODULE_15__components_help_help_component__["a" /* HelpComponent */] },
                     { path: 'animationPage', component: __WEBPACK_IMPORTED_MODULE_16__components_animation_screen_animation_screen_component__["a" /* AnimationScreenComponent */] },
-                    { path: 'changeUserData', component: __WEBPACK_IMPORTED_MODULE_17__components_change_user_data_change_user_data_component__["a" /* ChangeUserDataComponent */] }
+                    { path: 'changeUserData', component: __WEBPACK_IMPORTED_MODULE_17__components_change_user_data_change_user_data_component__["a" /* ChangeUserDataComponent */] },
+                    { path: 'parameters', component: __WEBPACK_IMPORTED_MODULE_19__components_parameters_parameters_component__["a" /* ParametersComponent */] }
                 ])
             ],
             providers: [__WEBPACK_IMPORTED_MODULE_7__services_data_service__["a" /* DataService */]],
@@ -893,7 +897,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-static-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n          <div class=\"navbar-brand\">\n              <label (click)=\"redirectToHome()\" class=\"labelLo\"> SWaRM </label>     \n                    \n            </div>\n            <button data-toggle=\"collapse\" data-target=\"#navcol-1\" class=\"navbar-toggle collapsed\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"navcol-1\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"dropdown\"><a data-toggle=\"dropdown\" href=\"#\" aria-expanded=\"false\" class=\"dropdown-toggle\">Welcome, {{name}} <span class=\"caret\"></span></a>\n                    <ul role=\"menu\" class=\"dropdown-menu\">\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHome()\"><label class=\"labelLi\">Home</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToUserInfo()\"><label class=\"labelLi\">See profile</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToChangePassword()\"><label class=\"labelLi\">Change password</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHelp()\"><label class=\"labelLi\">Help</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"logOut()\" ><label class=\"labelLo\">Log out</label></li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n\n"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-static-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n          <div class=\"navbar-brand\">\n              <label (click)=\"redirectToHome()\" class=\"labelLo\"> SWaRM </label>     \n                    \n            </div>\n            <button data-toggle=\"collapse\" data-target=\"#navcol-1\" class=\"navbar-toggle collapsed\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"navcol-1\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"dropdown\"><a data-toggle=\"dropdown\" href=\"#\" aria-expanded=\"false\" class=\"dropdown-toggle\">Welcome, {{name}} <span class=\"caret\"></span></a>\n                    <ul role=\"menu\" class=\"dropdown-menu\">\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHome()\"><label class=\"labelLi\">Home</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToUserInfo()\"><label class=\"labelLi\">See profile</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToParameters()\"><label class=\"labelLi\">Parameters</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToChangePassword()\"><label class=\"labelLi\">Change password</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHelp()\"><label class=\"labelLi\">Help</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"logOut()\" ><label class=\"labelLo\">Log out</label></li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n\n"
 
 /***/ }),
 
@@ -964,6 +968,9 @@ var NavbarComponent = (function () {
     NavbarComponent.prototype.redirectToHelp = function () {
         this.router.navigate(['/help']);
     };
+    NavbarComponent.prototype.redirectToParameters = function () {
+        this.router.navigate(['/parameters']);
+    };
     NavbarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-navbar',
@@ -973,6 +980,131 @@ var NavbarComponent = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_3_angularx_social_login__["a" /* AuthService */]])
     ], NavbarComponent);
     return NavbarComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/parameters/parameters.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "div.btnRow{\r\n    margin-top: 15px;\r\n}\r\n\r\nlegend.parametersLegend2{\r\n    margin-top: 25px;\r\n}\r\n\r\n#parametersLegend{\r\n    margin-top: 20px;\r\n}\r\n\r\ndiv.topp{\r\n    margin-top: 30px;\r\n    padding-top: 30px;\r\n}\r\n\r\n.ng-valid[required], .ng-valid.required  {\r\n    border-left: 5px solid #42A948; /* green */\r\n  }\r\n  \r\n  .ng-invalid:not(form)  {\r\n    border-left: 5px solid #a94442; /* red */\r\n  }\r\n\r\n  .customAlert {\r\n    display:inline-block !important;\r\n  }\r\n\r\n  .alertSuccessful{\r\n      margin-top: 20px;\r\n      background-color: #42A948;\r\n  }\r\n\r\n  .alertUnsuccessful{\r\n    margin-top: 20px;\r\n    background-color: #a94442; \r\n\r\n}div.rowSecond{\r\n    margin-bottom: 30px;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/parameters/parameters.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-navbar></app-navbar>\n\n<div class=\"container\" id=\"userinfo\">\n  <div class=\"row\">\n     <div class=\"col-md-7 col-md-offset-3 \">\n        <div class=\"panel panel-default\">\n            <div class=\"panel-heading\">  <h4 >Change parameters</h4></div>\n             <div class=\"panel-body\">\n                <legend id=\"legendRegister\" class=\"text-center parametersLegend\"><h4>Alarms</h4></legend>\n        <form #changeForm=\"ngForm\" (ngSubmit)=\"changeParameters(changeForm.value)\">\n          <div class=\"form-group\">\n            <div class=\"col-md-6\">\n                <label>Max Chlorine</label>\n                \n\n                <input id=\"maxChlorine\" name=\"maxChlorine\" type=\"text\" class=\"form-control\" required [(ngModel)]=\"oldmaxChlorine\" #maxChlorine=\"ngModel\">\n                \n\n            </div>\n            <div class=\"col-md-6\">\n            <label >Min Chlorine</label>\n            <input type=\"text\" class=\"form-control\" id=\"minChlorine\" name=\"minChlorine\" required [(ngModel)]=\"oldminChlorine\" #minChlorine=\"ngModel\">\n          </div>\n        </div>\n\n        <div class=\"form-group\">\n            <div class=\"col-md-6\">\n                <label>Max Hardness</label>\n                <input type=\"text\" class=\"form-control\" id=\"maxHardness\" name=\"maxHardness\" required [(ngModel)]=\"oldmaxHardness\" #maxHardness=\"ngModel\">\n            </div>\n            <div class=\"col-md-6\">\n            <label>Min Hardness</label>\n            <input type=\"text\" class=\"form-control\" id=\"minHardness\" name=\"minHardness\" required [(ngModel)]=\" oldminHardness\" #minHardness=\"ngModel\">\n          </div>\n        </div>\n\n        <div class=\"form-group\">\n            <div class=\"col-md-6\">\n                <label>Max Ph</label>\n                <input type=\"text\" class=\"form-control\" id=\"maxPh\" name=\"maxPh\" required [(ngModel)]=\"oldmaxPh\" #maxPh=\"ngModel\">\n            </div>\n            <div class=\"col-md-6\">\n            <label for=\"email\">Min Ph</label>\n            <input type=\"text\" class=\"form-control\" id=\"minPh\" name=\"minPh\" required [(ngModel)]=\"oldminPh\" #minPh=\"ngModel\">\n          </div>\n        </div>\n\n        <div class=\"form-group rowSecond\">\n            <div class=\"col-md-6\">\n                <label>Max Temperature</label>\n                <input type=\"text\" class=\"form-control\" id=\"maxTemperature\" name=\"maxTemperature\" required [(ngModel)]=\"oldmaxTemperature\" #maxTemperature=\"ngModel\">\n            </div>\n            <div class=\"col-md-6 \">\n            <label>Min Temperature</label>\n            <input type=\"text\" class=\"form-control\" id=\"minTemperature\" name=\"minTemperature\" required [(ngModel)]=\"oldminTemperature\" #minTemperature=\"ngModel\">\n          </div>\n        </div>\n        \n        \n        <div class=\"row rowSecond\">\n          \n        </div>\n\n        <legend id=\"legendRegister\" class=\"text-center parametersLegend\"><h4>Water price </h4></legend>\n        \n    \n        <div class=\"form-group\">\n            <div class=\"col-md-4 col-md-offset-4\">\n              <div style=\"text-align:center\">\n                <label>Price</label>\n              </div>\n                <input type=\"text\" class=\"form-control\" id=\"price\" name=\"price\" required [(ngModel)]=\"oldPrice\" #price=\"ngModel\">\n            </div>\n        </div>\n\n        <div class=\"row \">\n       <div class=\"col-md-3 col-md-offset-5 btnRow\">\n          <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n        </div>\n        \n      </div>\n        </form>\n\n     </div>\n     \n  </div>\n  <div class=\"alert alert-success {{classAlert}}\" *ngIf=\"isValid\">\n    <strong>{{errorMessage}}</strong> \n  </div>\n</div>\n\n</div>\n</div>\n  \n  \n  \n  \n           "
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/parameters/parameters.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ParametersComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ParametersComponent = (function () {
+    function ParametersComponent(route, dataService, router) {
+        this.route = route;
+        this.dataService = dataService;
+        this.router = router;
+        this.isValid = false;
+    }
+    ParametersComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.dataService.getParameters().subscribe(function (parameters) {
+            _this.oldmaxChlorine = parameters[0].value;
+            _this.oldminChlorine = parameters[4].value;
+            _this.oldmaxHardness = parameters[1].value;
+            _this.oldminHardness = parameters[5].value;
+            _this.oldmaxPh = parameters[2].value;
+            _this.oldminPh = parameters[6].value;
+            _this.oldmaxTemperature = parameters[3].value;
+            _this.oldminTemperature = parameters[7].value;
+            _this.oldPrice = parameters[8].value;
+        });
+    };
+    ParametersComponent.prototype.changeParameters = function (parameters) {
+        var _this = this;
+        if (parameters.maxChlorine != null) {
+            this.maxChlorine = parameters.maxChlorine;
+        }
+        if (parameters.maxHardness != null) {
+            this.maxHardness = parameters.maxHardness;
+        }
+        if (parameters.maxPh != null) {
+            this.maxPh = parameters.maxPh;
+        }
+        if (parameters.maxTemperature != null) {
+            this.maxTemperature = parameters.maxTemperature;
+        }
+        if (parameters.minChlorine != null) {
+            this.minChlorine = parameters.minChlorine;
+        }
+        if (parameters.minHardness != null) {
+            this.minHardness = parameters.minHardness;
+        }
+        if (parameters.minPh != null) {
+            this.minPh = parameters.minPh;
+        }
+        if (parameters.minTemperature != null) {
+            this.minTemperature = parameters.minTemperature;
+        }
+        if (parameters.price != null) {
+            this.price = parameters.price;
+        }
+        this.dataService.changeParameters(this.maxChlorine, this.minChlorine, this.maxHardness, this.minHardness, this.maxPh, this.minPh, this.maxTemperature, this.minTemperature, this.price, JSON.parse(localStorage.getItem('curentUser')).token).subscribe(function (success) {
+            console.log(success);
+            if (success == true) {
+                _this.errorMessage = "Successful data change";
+                _this.classAlert = "alertSuccessful";
+                _this.isValid = true;
+            }
+            else if (success == null) {
+                _this.errorMessage = "Unsuccessful data change";
+                _this.classAlert = "alertUnsuccessful";
+                _this.isValid = true;
+            }
+        });
+    };
+    ParametersComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-parameters',
+            template: __webpack_require__("../../../../../src/app/components/parameters/parameters.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/parameters/parameters.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__services_data_service__["a" /* DataService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
+    ], ParametersComponent);
+    return ParametersComponent;
 }());
 
 
@@ -1853,6 +1985,17 @@ var DataService = (function () {
         var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
         opts.headers = headers;
         return this.http.put('https://swarmnetbackendusa.herokuapp.com/users/', user, opts).map(function (res) { return res.json(); });
+    };
+    DataService.prototype.changeParameters = function (maxChlorine, minChlorine, maxHardness, minHardness, maxPh, minPh, maxTemperature, minTemperature, price, token) {
+        var parameters = { maxChlorine: maxChlorine, minChlorine: minChlorine, maxHardness: maxHardness, minHardness: minHardness, maxPh: maxPh, minPh: minPh, maxTemp: maxTemperature, minTemp: minTemperature, price: price };
+        var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Headers */]();
+        headers.append('Authorization', 'Bearer ' + token);
+        var opts = new __WEBPACK_IMPORTED_MODULE_4__angular_http__["d" /* RequestOptions */]();
+        opts.headers = headers;
+        return this.http.post('https://swarmnetbackendusa.herokuapp.com/parameters', parameters, opts).map(function (res) { return res.json(); });
+    };
+    DataService.prototype.getParameters = function () {
+        return this.http.get('https://swarmnetbackendusa.herokuapp.com/parameters').map(function (res) { return res.json(); });
     };
     DataService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),

@@ -897,7 +897,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-static-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n          <div class=\"navbar-brand\">\n              <label (click)=\"redirectToHome()\" class=\"labelLo\"> SWaRM </label>     \n                    \n            </div>\n            <button data-toggle=\"collapse\" data-target=\"#navcol-1\" class=\"navbar-toggle collapsed\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"navcol-1\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"dropdown\"><a data-toggle=\"dropdown\" href=\"#\" aria-expanded=\"false\" class=\"dropdown-toggle\">Welcome, {{name}} <span class=\"caret\"></span></a>\n                    <ul role=\"menu\" class=\"dropdown-menu\">\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHome()\"><label class=\"labelLi\">Home</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToUserInfo()\"><label class=\"labelLi\">See profile</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToParameters()\"><label class=\"labelLi\">Parameters</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToChangePassword()\"><label class=\"labelLi\">Change password</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHelp()\"><label class=\"labelLi\">Help</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"logOut()\" ><label class=\"labelLo\">Log out</label></li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n\n"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-static-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n          <div class=\"navbar-brand\">\n              <label (click)=\"redirectToHome()\" class=\"labelLo\"> SWaRM </label>     \n                    \n            </div>\n            <button data-toggle=\"collapse\" data-target=\"#navcol-1\" class=\"navbar-toggle collapsed\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"navcol-1\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"dropdown\"><a data-toggle=\"dropdown\" href=\"#\" aria-expanded=\"false\" class=\"dropdown-toggle\">Welcome, {{name}} <span class=\"caret\"></span></a>\n                    <ul role=\"menu\" class=\"dropdown-menu\">\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHome()\"><label class=\"labelLi\">Home</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToUserInfo()\"><label class=\"labelLi\">See profile</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToParameters()\" [hidden]=\"!showAdminMenu\"><label class=\"labelLi\">Parameters</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToChangePassword()\"><label class=\"labelLi\">Change password</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHelp()\"><label class=\"labelLi\">Help</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"logOut()\" ><label class=\"labelLo\">Log out</label></li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n\n"
 
 /***/ }),
 
@@ -929,6 +929,7 @@ var NavbarComponent = (function () {
         this.router = router;
         this.authService = authService;
         this.hideLogo = false;
+        this.showAdminMenu = false;
     }
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -938,6 +939,12 @@ var NavbarComponent = (function () {
             console.log(user);
             _this.name = user.name;
         });
+        if (localStorage.getItem('curentUser') != null) {
+            this.isAdmin = JSON.parse(localStorage.getItem('curentUser')).user.permissions.includes('admin');
+            if (this.isAdmin) {
+                this.showAdminMenu = true;
+            }
+        }
     };
     NavbarComponent.prototype.logOut = function () {
         localStorage.removeItem('curentUser');

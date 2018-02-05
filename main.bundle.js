@@ -1060,14 +1060,10 @@ var ParametersComponent = (function () {
             _this.oldPrice = parameters[8].value;
             console.log(parameters);
         });
-        // if(localStorage.getItem('curentUser') != null){
-        //   this.isAdmin = JSON.parse(localStorage.getItem('curentUser')).user.permissions.includes('admin');
-        //   if(this.isAdmin){
-        //    this.router.navigate(['/adminPage']);
-        //  }else{
-        //    this.router.navigate(['/userPage']);
-        //  }
-        //  }
+        this.isAdmin = JSON.parse(localStorage.getItem('curentUser')).user.permissions.includes('admin');
+        if (!this.isAdmin) {
+            this.router.navigate(['/userPage']);
+        }
     };
     ParametersComponent.prototype.changeParameters = function (parameters) {
         var _this = this;

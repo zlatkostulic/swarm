@@ -98,12 +98,14 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_change_user_data_change_user_data_component__ = __webpack_require__("../../../../../src/app/components/change-user-data/change-user-data.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_angularx_social_login__ = __webpack_require__("../../../../angularx-social-login/angularx-social-login.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_parameters_parameters_component__ = __webpack_require__("../../../../../src/app/components/parameters/parameters.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_sidenavbar_sidenavbar_component__ = __webpack_require__("../../../../../src/app/components/sidenavbar/sidenavbar.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -153,7 +155,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_15__components_help_help_component__["a" /* HelpComponent */],
                 __WEBPACK_IMPORTED_MODULE_16__components_animation_screen_animation_screen_component__["a" /* AnimationScreenComponent */],
                 __WEBPACK_IMPORTED_MODULE_17__components_change_user_data_change_user_data_component__["a" /* ChangeUserDataComponent */],
-                __WEBPACK_IMPORTED_MODULE_19__components_parameters_parameters_component__["a" /* ParametersComponent */]
+                __WEBPACK_IMPORTED_MODULE_19__components_parameters_parameters_component__["a" /* ParametersComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__components_sidenavbar_sidenavbar_component__["a" /* SidenavbarComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -174,7 +177,8 @@ var AppModule = (function () {
                     { path: 'help', component: __WEBPACK_IMPORTED_MODULE_15__components_help_help_component__["a" /* HelpComponent */] },
                     { path: 'animationPage', component: __WEBPACK_IMPORTED_MODULE_16__components_animation_screen_animation_screen_component__["a" /* AnimationScreenComponent */] },
                     { path: 'changeUserData', component: __WEBPACK_IMPORTED_MODULE_17__components_change_user_data_change_user_data_component__["a" /* ChangeUserDataComponent */] },
-                    { path: 'parameters', component: __WEBPACK_IMPORTED_MODULE_19__components_parameters_parameters_component__["a" /* ParametersComponent */] }
+                    { path: 'parameters', component: __WEBPACK_IMPORTED_MODULE_19__components_parameters_parameters_component__["a" /* ParametersComponent */] },
+                    { path: 'sidenavbar', component: __WEBPACK_IMPORTED_MODULE_20__components_sidenavbar_sidenavbar_component__["a" /* SidenavbarComponent */] }
                 ])
             ],
             providers: [__WEBPACK_IMPORTED_MODULE_7__services_data_service__["a" /* DataService */]],
@@ -804,13 +808,12 @@ var LoginComponent = (function () {
         });
     }
     LoginComponent.prototype.ngOnInit = function () {
+        if (localStorage.getItem('consumptionPrice') == null) {
+            this.dataService.getParameterPrice().subscribe(function (parameters) {
+                localStorage.setItem('consumptionPrice', parameters.value);
+            });
+        }
         if (localStorage.getItem('curentUser') != null) {
-            // this.username = user.username;
-            // this.password = user.password;
-            // this.dataService.login(this.username,this.password).subscribe((usertoken) => {
-            //   this.isAdmin = usertoken.user.permissions.includes('admin');
-            // },
-            //          resError => this.errorMessage =  "User do not exist" );
             this.token = JSON.parse(localStorage.getItem('curentUser')).token;
             this.isAdmin = JSON.parse(localStorage.getItem('curentUser')).user.permissions.includes('admin');
             if (this.isAdmin) {
@@ -884,7 +887,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#logoPic{\r\n    padding-top: 20px;\r\n}\r\n\r\nli:hover#liHover {\r\n     background-color:rgb(216, 216, 216);\r\n     padding-left: 20px;\r\n }\r\n\r\nli#liHover{\r\n     \r\n     font-size: 1.1em;\r\n     padding-left: 10px;\r\n }\r\n\r\n label.labelLi{\r\n\r\n    font-weight: normal !important;\r\n    \r\n }\r\n\r\n a,label.labelLi,label.labelLo { cursor: pointer; }\r\n\r\n.labelLo{\r\n  transition: 0.5s;\r\n}\r\n\r\n\r\n\r\n@media(max-width:768px){\r\n  \r\n  .dropdown-menu{\r\n    color: rgb(216, 216, 216);\r\n  }\r\n \r\n}\r\n\r\n \r\n", ""]);
+exports.push([module.i, "#logoPic{\r\n    padding-top: 20px;\r\n}\r\n\r\nli:hover#liHover {\r\n     background-color:rgb(216, 216, 216);\r\n     padding-left: 20px;\r\n }\r\n\r\nli#liHover{\r\n     \r\n     font-size: 1.1em;\r\n     padding-left: 10px;\r\n }\r\n\r\n label.labelLi{\r\n\r\n    font-weight: normal !important;\r\n    \r\n }\r\n\r\n a,label.labelLi,label.labelLo { cursor: pointer; }\r\n\r\n.labelLo{\r\n  transition: 0.5s;\r\n}\r\n\r\n\r\n\r\n@media(max-width:768px){\r\n  \r\n  .dropdown-menu{\r\n    color: rgb(216, 216, 216);\r\n  }\r\n \r\n}", ""]);
 
 // exports
 
@@ -897,7 +900,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-static-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n          <div class=\"navbar-brand\">\n              <label (click)=\"redirectToHome()\" class=\"labelLo\"> SWaRM </label>     \n                    \n            </div>\n            <button data-toggle=\"collapse\" data-target=\"#navcol-1\" class=\"navbar-toggle collapsed\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"navcol-1\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"dropdown\"><a data-toggle=\"dropdown\" href=\"#\" aria-expanded=\"false\" class=\"dropdown-toggle\">Welcome, {{name}} <span class=\"caret\"></span></a>\n                    <ul role=\"menu\" class=\"dropdown-menu\">\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHome()\"><label class=\"labelLi\">Home</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToUserInfo()\"><label class=\"labelLi\">See profile</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToParameters()\" [hidden]=\"!showAdminMenu\"><label class=\"labelLi\">Parameters</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToChangePassword()\"><label class=\"labelLi\">Change password</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHelp()\"><label class=\"labelLi\">Help</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"logOut()\" ><label class=\"labelLo\">Log out</label></li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n\n"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-static-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n          <div class=\"navbar-brand\">\n              <label (click)=\"redirectToHome()\" class=\"labelLo\"> SWaRM </label>     \n                    \n            </div>\n            <button data-toggle=\"collapse\" data-target=\"#navcol-1\" class=\"navbar-toggle collapsed\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n        </div>\n        <div class=\"collapse navbar-collapse\" id=\"navcol-1\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"dropdown\"><a data-toggle=\"dropdown\" href=\"#\" aria-expanded=\"false\" class=\"dropdown-toggle\">Welcome, {{name}} <span class=\"caret\"></span></a>\n                    <ul role=\"menu\" class=\"dropdown-menu\">\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHome()\"><label class=\"labelLi\">Home</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToUserInfo()\"><label class=\"labelLi\">See profile</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToParameters()\" [hidden]=\"!showAdminMenu\"><label class=\"labelLi\">Parameters</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToChangePassword()\"><label class=\"labelLi\">Change password</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"redirectToHelp()\"><label class=\"labelLi\">Help</label></li>\n                        <li role=\"presentation\" id=\"liHover\" (click)=\"logOut()\" ><label class=\"labelLo\">Log out</label></li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n\n\n\n\n"
 
 /***/ }),
 
@@ -930,6 +933,7 @@ var NavbarComponent = (function () {
         this.authService = authService;
         this.hideLogo = false;
         this.showAdminMenu = false;
+        this.hidePointer = false;
     }
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -948,8 +952,9 @@ var NavbarComponent = (function () {
     };
     NavbarComponent.prototype.logOut = function () {
         localStorage.removeItem('curentUser');
+        localStorage.removeItem('consumptionPrice');
         this.router.navigate(['/login']);
-        this.authService.signOut();
+        // this.authService.signOut(); -- poboljsati!
         this.user = null;
     };
     NavbarComponent.prototype.redirectToHome = function () {
@@ -1014,7 +1019,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/parameters/parameters.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n\n<div class=\"container\" id=\"userinfo\">\n  <div class=\"row\">\n     <div class=\"col-md-7 col-md-offset-3 \">\n        <div class=\"panel panel-default\">\n            <div class=\"panel-heading\">  <h4 >Change parameters</h4></div>\n             <div class=\"panel-body\">\n                <legend id=\"legendRegister\" class=\"text-center parametersLegend\"><h4>Alarms</h4></legend>\n        <form #changeForm=\"ngForm\" (ngSubmit)=\"changeParameters(changeForm.value)\">\n          <div class=\"form-group\">\n            <div class=\"col-md-6\">\n                <label>Max Chlorine</label>\n                \n\n                <input id=\"maxChlorine\" name=\"maxChlorine\" type=\"text\" class=\"form-control\" required [(ngModel)]=\"oldmaxChlorine\" #maxChlorine=\"ngModel\">\n                \n\n            </div>\n            <div class=\"col-md-6\">\n            <label >Min Chlorine</label>\n            <input type=\"text\" class=\"form-control\" id=\"minChlorine\" name=\"minChlorine\" required [(ngModel)]=\"oldminChlorine\" #minChlorine=\"ngModel\">\n          </div>\n        </div>\n\n        <div class=\"form-group\">\n            <div class=\"col-md-6\">\n                <label>Max Hardness</label>\n                <input type=\"text\" class=\"form-control\" id=\"maxHardness\" name=\"maxHardness\" required [(ngModel)]=\"oldmaxHardness\" #maxHardness=\"ngModel\">\n            </div>\n            <div class=\"col-md-6\">\n            <label>Min Hardness</label>\n            <input type=\"text\" class=\"form-control\" id=\"minHardness\" name=\"minHardness\" required [(ngModel)]=\" oldminHardness\" #minHardness=\"ngModel\">\n          </div>\n        </div>\n\n        <div class=\"form-group\">\n            <div class=\"col-md-6\">\n                <label>Max Ph</label>\n                <input type=\"text\" class=\"form-control\" id=\"maxPh\" name=\"maxPh\" required [(ngModel)]=\"oldmaxPh\" #maxPh=\"ngModel\">\n            </div>\n            <div class=\"col-md-6\">\n            <label for=\"email\">Min Ph</label>\n            <input type=\"text\" class=\"form-control\" id=\"minPh\" name=\"minPh\" required [(ngModel)]=\"oldminPh\" #minPh=\"ngModel\">\n          </div>\n        </div>\n\n        <div class=\"form-group rowSecond\">\n            <div class=\"col-md-6\">\n                <label>Max Temperature</label>\n                <input type=\"text\" class=\"form-control\" id=\"maxTemperature\" name=\"maxTemperature\" required [(ngModel)]=\"oldmaxTemperature\" #maxTemperature=\"ngModel\">\n            </div>\n            <div class=\"col-md-6 \">\n            <label>Min Temperature</label>\n            <input type=\"text\" class=\"form-control\" id=\"minTemperature\" name=\"minTemperature\" required [(ngModel)]=\"oldminTemperature\" #minTemperature=\"ngModel\">\n          </div>\n        </div>\n        \n        \n        <div class=\"row rowSecond\">\n          \n        </div>\n\n        <legend id=\"legendRegister\" class=\"text-center parametersLegend\"><h4>Water price </h4></legend>\n        \n    \n        <div class=\"form-group\">\n            <div class=\"col-md-4 col-md-offset-4\">\n              <div style=\"text-align:center\">\n                <label>Price</label>\n              </div>\n                <input type=\"text\" class=\"form-control\" id=\"price\" name=\"price\" required [(ngModel)]=\"oldPrice\" #price=\"ngModel\">\n            </div>\n        </div>\n\n        <div class=\"row \">\n       <div class=\"col-md-3 col-md-offset-5 btnRow\">\n          <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n        </div>\n        \n      </div>\n        </form>\n\n     </div>\n     \n  </div>\n  <div class=\"alert alert-success {{classAlert}}\" *ngIf=\"isValid\">\n    <strong>{{errorMessage}}</strong> \n  </div>\n</div>\n\n</div>\n</div>\n  \n  \n  \n  \n           "
+module.exports = "<app-navbar></app-navbar>\n\n<div class=\"container\" id=\"userinfo\">\n  <div class=\"row\">\n     <div class=\"col-md-7 col-md-offset-3 \">\n        <div class=\"panel panel-default\">\n            <div class=\"panel-heading\">  <h4 >Change parameters</h4></div>\n             <div class=\"panel-body\">\n                <legend id=\"legendRegister\" class=\"text-center parametersLegend\"><h4>Alarms</h4></legend>\n        <form #changeForm=\"ngForm\" (ngSubmit)=\"changeParameters(changeForm.value)\">\n          <div class=\"form-group\">\n            <div class=\"col-md-6\">\n                <label>Max Chlorine</label>\n                \n\n                <input id=\"maxChlorine\" name=\"maxChlorine\" type=\"number\" class=\"form-control\" required pattern=\"[0-9]+(\\.[0-9]*){0,1}\" [(ngModel)]=\"oldmaxChlorine\" #maxChlorine=\"ngModel\" >\n                \n\n            </div>\n            <div class=\"col-md-6\">\n            <label >Min Chlorine</label>\n            <input  class=\"form-control\" id=\"minChlorine\" name=\"minChlorine\" type=\"number\" required pattern=\"[0-9]+(\\.[0-9]*){0,1}\" [(ngModel)]=\"oldminChlorine\" #minChlorine=\"ngModel\">\n          </div>\n        </div>\n\n        <div class=\"form-group\">\n            <div class=\"col-md-6\">\n                <label>Max Hardness</label>\n                <input class=\"form-control\" id=\"maxHardness\" name=\"maxHardness\"  type=\"number\" required pattern=\"[0-9]+(\\.[0-9]*){0,1}\" [(ngModel)]=\"oldmaxHardness\" #maxHardness=\"ngModel\">\n            </div>\n            <div class=\"col-md-6\">\n            <label>Min Hardness</label>\n            <input  class=\"form-control\" id=\"minHardness\" name=\"minHardness\" type=\"number\" required pattern=\"[0-9]+(\\.[0-9]*){0,1}\" [(ngModel)]=\" oldminHardness\" #minHardness=\"ngModel\">\n          </div>\n        </div>\n\n        <div class=\"form-group\">\n            <div class=\"col-md-6\">\n                <label>Max Ph</label>\n                <input class=\"form-control\" id=\"maxPh\" name=\"maxPh\"  type=\"number\" required pattern=\"[0-9]+(\\.[0-9]*){0,1}\" [(ngModel)]=\"oldmaxPh\" #maxPh=\"ngModel\">\n            </div>\n            <div class=\"col-md-6\">\n            <label for=\"email\">Min Ph</label>\n            <input  class=\"form-control\" id=\"minPh\" name=\"minPh\" type=\"number\" required pattern=\"[0-9]+(\\.[0-9]*){0,1}\" [(ngModel)]=\"oldminPh\" #minPh=\"ngModel\">\n          </div>\n        </div>\n\n        <div class=\"form-group rowSecond\">\n            <div class=\"col-md-6\">\n                <label>Max Temperature</label>\n                <input  class=\"form-control\" id=\"maxTemperature\" name=\"maxTemperature\" type=\"number\" required pattern=\"[0-9]+(\\.[0-9]*){0,1}\" [(ngModel)]=\"oldmaxTemperature\" #maxTemperature=\"ngModel\">\n            </div>\n            <div class=\"col-md-6 \">\n            <label>Min Temperature</label>\n            <input class=\"form-control\" id=\"minTemperature\" name=\"minTemperature\" type=\"number\" required pattern=\"[0-9]+(\\.[0-9]*){0,1}\" [(ngModel)]=\"oldminTemperature\" #minTemperature=\"ngModel\">\n          </div>\n        </div>\n        \n        \n        <div class=\"row rowSecond\">\n          \n        </div>\n\n        <legend id=\"legendRegister\" class=\"text-center parametersLegend\"><h4>Water price </h4></legend>\n        \n    \n        <div class=\"form-group\">\n            <div class=\"col-md-4 col-md-offset-4\">\n              <div style=\"text-align:center\">\n                <label>Price</label>\n              </div>\n                <input  class=\"form-control\" id=\"price\" name=\"price\" type=\"number\" required pattern=\"[0-9]+(\\.[0-9]*){0,1}\" [(ngModel)]=\"oldPrice\" #price=\"ngModel\">\n            </div>\n        </div>\n\n        <div class=\"row \">\n       <div class=\"col-md-3 col-md-offset-5 btnRow\">\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"changeForm.invalid\">Submit</button>\n        </div>\n        \n      </div>\n        </form>\n\n     </div>\n     \n  </div>\n  <div class=\"alert alert-success {{classAlert}}\" *ngIf=\"isValid\">\n    <strong>{{errorMessage}}</strong> \n  </div>\n</div>\n\n</div>\n</div>\n  \n  \n  \n  \n           "
 
 /***/ }),
 
@@ -1049,16 +1054,36 @@ var ParametersComponent = (function () {
     ParametersComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.dataService.getParameters().subscribe(function (parameters) {
-            _this.oldmaxChlorine = parameters[0].value;
-            _this.oldminChlorine = parameters[4].value;
-            _this.oldmaxHardness = parameters[1].value;
-            _this.oldminHardness = parameters[5].value;
-            _this.oldmaxPh = parameters[2].value;
-            _this.oldminPh = parameters[6].value;
-            _this.oldmaxTemperature = parameters[3].value;
-            _this.oldminTemperature = parameters[7].value;
-            _this.oldPrice = parameters[8].value;
-            console.log(parameters);
+            for (var _i = 0, parameters_1 = parameters; _i < parameters_1.length; _i++) {
+                var p = parameters_1[_i];
+                if (p.parameter == 'maxChlorine') {
+                    _this.oldmaxChlorine = p.value;
+                }
+                if (p.parameter == 'maxHardness') {
+                    _this.oldmaxHardness = p.value;
+                }
+                if (p.parameter == 'maxPh') {
+                    _this.oldmaxPh = p.value;
+                }
+                if (p.parameter == 'maxTemp') {
+                    _this.oldmaxTemperature = p.value;
+                }
+                if (p.parameter == 'minChlorine') {
+                    _this.oldminChlorine = p.value;
+                }
+                if (p.parameter == 'minHardness') {
+                    _this.oldminHardness = p.value;
+                }
+                if (p.parameter == 'minPh') {
+                    _this.oldminPh = p.value;
+                }
+                if (p.parameter == 'minTemp') {
+                    _this.oldminTemperature = p.value;
+                }
+                if (p.parameter == 'price') {
+                    _this.oldPrice = p.value;
+                }
+            }
         });
         this.isAdmin = JSON.parse(localStorage.getItem('curentUser')).user.permissions.includes('admin');
         if (!this.isAdmin) {
@@ -1284,6 +1309,75 @@ var RegisterComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/sidenavbar/sidenavbar.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".sidenav {\r\n    height: 100%;\r\n    width: 0;\r\n    position: fixed;\r\n    z-index: 1;\r\n    top: 0;\r\n    left: 0;\r\n    background-color: #111;\r\n    overflow-x: hidden;\r\n    transition: 0.5s;\r\n    padding-top: 60px;\r\n}\r\n\r\n.sidenav a {\r\n    padding: 8px 8px 8px 32px;\r\n    text-decoration: none;\r\n    font-size: 25px;\r\n    color: #818181;\r\n    display: block;\r\n    transition: 0.3s;\r\n}\r\n\r\n.sidenav a:hover {\r\n    color: #f1f1f1;\r\n}\r\n\r\n.sidenav .closebtn {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 25px;\r\n    font-size: 36px;\r\n    margin-left: 50px;\r\n}\r\n\r\n#main {\r\n    transition: margin-left .5s;\r\n    padding: 16px;\r\n}\r\n\r\n@media screen and (max-height: 450px) {\r\n  .sidenav {padding-top: 15px;}\r\n  .sidenav a {font-size: 18px;}\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sidenavbar/sidenavbar.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"mySidenav\" class=\"sidenav\">\n  <a href=\"javascript:void(0)\" class=\"closebtn\" (click)=\"closeNav()\">&times;</a>\n  <a href=\"#\">About</a>\n  <a href=\"#\">Services</a>\n  <a href=\"#\">Clients</a>\n  <a href=\"#\">Contact</a>\n</div>\n\n<div id=\"main\">\n  <h2>Sidenav Push Example</h2>\n  <p>Click on the element below to open the side navigation menu, and push this content to the right.</p>\n  <span style=\"font-size:30px;cursor:pointer\" (click)=\"openNav()\">&#9776; open</span>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sidenavbar/sidenavbar.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SidenavbarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var SidenavbarComponent = (function () {
+    function SidenavbarComponent() {
+    }
+    SidenavbarComponent.prototype.ngOnInit = function () {
+    };
+    SidenavbarComponent.prototype.openNav = function () {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+    };
+    SidenavbarComponent.prototype.closeNav = function () {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    };
+    SidenavbarComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-sidenavbar',
+            template: __webpack_require__("../../../../../src/app/components/sidenavbar/sidenavbar.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/sidenavbar/sidenavbar.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], SidenavbarComponent);
+    return SidenavbarComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/user-page/user-page.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1305,7 +1399,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user-page/user-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<app-navbar></app-navbar>\r\n<div class=\"container\">\r\n  <div class=\"row paddingDiv\" >\r\n\r\n        <div class=\"col-md-6 col-md-offset-3\"> \r\n                <div class=\"gmd gmd-1\">\r\n                    <div class=\"panel-heading text-center\">Consumption</div>\r\n                    <table class=\"table table-bordered table-xs table-sm table-md m-0\">\r\n                        <thead class=\"\">\r\n                            <tr>\r\n                                <th></th>\r\n                                <th>Today</th>\r\n                                <th>This week</th>\r\n                                <th>This month</th>\r\n                                <th>This year</th>\r\n                            </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                            <tr>\r\n                                <th>Amount (dl)</th>\r\n                                <td>{{dailyConsumption}}</td>\r\n                                <td>{{weeklyConsumption}}</td>\r\n                                <td>{{monthlyConsumption}}</td>\r\n                                <td>{{yearlyConsumption}}</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <th>Price</th>\r\n                                <td>{{priceForDailyConsumption | number : '.0-2' }} &euro;</td>\r\n                                <td>{{priceForWeeklyConsumption | number : '.0-2'}} &euro;</td>\r\n                                <td>{{priceForMonthlyConsumption | number : '.0-2'}} &euro;</td>\r\n                                <td>{{priceForYearlyConsumption | number : '.0-2'}} &euro;</td>\r\n                            </tr>\r\n                          \r\n                        </tbody>\r\n                    </table>\r\n                    \r\n                  </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row paddingDiv2\" >\r\n    <div class=\"col-md-6\" >\r\n      <div class=\"gmd gmd-1\">\r\n          <div class=\"panel-heading text-center\" >pH value</div>\r\n          <div *ngIf=\"chartPh\" class=\"graphDiv\">\r\n              <canvas id=\"ph\" class=\"canvasGmd\">{{chartPh}}</canvas>\r\n            </div>\r\n      </div> \r\n       \r\n    </div>\r\n\r\n     <div class=\"col-md-6\"> \r\n        <div class=\"gmd gmd-1\">\r\n            <div class=\"panel-heading text-center\">Temperature value</div>\r\n            <div *ngIf=\"chartTemp\">\r\n                <canvas id=\"temp\" class=\"canvasGmd\" >{{chartTemp}}</canvas>\r\n              </div>\r\n          </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-6\"> \r\n        <div class=\"gmd gmd-1\">\r\n            <div class=\"panel-heading text-center\">Hardness value</div>\r\n            <div *ngIf=\"chartHard\">\r\n                <canvas id=\"hard\" class=\"canvasGmd\">{{chartHard}}</canvas>\r\n              </div>\r\n          </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-6\"> \r\n        <div class=\"gmd gmd-1\">\r\n            <div class=\"panel-heading text-center\">Chlorine level</div>\r\n            <div *ngIf=\"chartChlo\">\r\n                <canvas id=\"chlo\" class=\"canvasGmd\">{{chartChlo}}</canvas>\r\n              </div>\r\n          </div>\r\n    </div>\r\n\r\n    \r\n\r\n    \r\n    \r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+module.exports = "\r\n<app-navbar></app-navbar>\r\n<div class=\"container\">\r\n  <div class=\"row paddingDiv\" >\r\n\r\n        <div class=\"col-md-6 col-md-offset-3\"> \r\n                <div class=\"gmd gmd-1\">\r\n                    <div class=\"panel-heading text-center\">Consumption</div>\r\n                    <table class=\"table table-bordered table-xs table-sm table-md m-0\">\r\n                        <thead class=\"\">\r\n                            <tr>\r\n                                <th></th>\r\n                                <th>Today</th>\r\n                                <th>This week</th>\r\n                                <th>This month</th>\r\n                                <th>This year</th>\r\n                            </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                            <tr>\r\n                                <th>Amount (dl)</th>\r\n                                <td>{{dailyConsumption}}</td>\r\n                                <td>{{weeklyConsumption}}</td>\r\n                                <td>{{monthlyConsumption}}</td>\r\n                                <td>{{yearlyConsumption}}</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <th>Price</th>\r\n                                <td>{{priceForDailyConsumption | number : '.0-2' }} &euro;</td>\r\n                                <td>{{priceForWeeklyConsumption | number : '.0-2'}} &euro;</td>\r\n                                <td>{{priceForMonthlyConsumption | number : '.0-2'}} &euro;</td>\r\n                                <td>{{priceForYearlyConsumption | number : '.0-2'}} &euro;</td>\r\n                            </tr>\r\n                          \r\n                        </tbody>\r\n                    </table>\r\n                    \r\n                  </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row paddingDiv2\" >\r\n    <div class=\"col-md-6\" >\r\n      <div class=\"gmd gmd-1\">\r\n          <div class=\"panel-heading text-center\" >pH value</div>\r\n          <div *ngIf=\"chartPh\" class=\"graphDiv\">\r\n              <canvas id=\"ph\" class=\"canvasGmd\">{{chartPh}}</canvas>\r\n            </div>\r\n      </div> \r\n       \r\n    </div>\r\n\r\n     <div class=\"col-md-6\"> \r\n        <div class=\"gmd gmd-1\">\r\n            <div class=\"panel-heading text-center\">Temperature value</div>\r\n            <div *ngIf=\"chartTemp\">\r\n                <canvas id=\"temp\" class=\"canvasGmd\" >{{chartTemp}}</canvas>\r\n              </div>\r\n          </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-6\"> \r\n        <div class=\"gmd gmd-1\">\r\n            <div class=\"panel-heading text-center\">Hardness value</div>\r\n            <div *ngIf=\"chartHard\">\r\n                <canvas id=\"hard\" class=\"canvasGmd\">{{chartHard}}</canvas>\r\n              </div>\r\n          </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-6\"> \r\n        <div class=\"gmd gmd-1\">\r\n            <div class=\"panel-heading text-center\">Chlorine level</div>\r\n            <div *ngIf=\"chartChlo\">\r\n                <canvas id=\"chlo\" class=\"canvasGmd\">{{chartChlo}}</canvas>\r\n              </div>\r\n          </div>\r\n    </div>\r\n\r\n    \r\n\r\n    \r\n    \r\n  </div>\r\n</div>\r\n    \r\n    \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -1352,7 +1446,7 @@ var UserPageComponent = (function () {
         this.amountsHardness = [];
         this.timesChlorine = [];
         this.amountsChlorine = [];
-        this.consumptionPrice = 0.002;
+        this.consumptionPrice = localStorage.getItem('consumptionPrice');
     }
     UserPageComponent.prototype.ngOnDestroy = function () {
     };
@@ -2008,6 +2102,9 @@ var DataService = (function () {
     };
     DataService.prototype.getParameters = function () {
         return this.http.get('https://swarmnetbackendusa.herokuapp.com/parameters').map(function (res) { return res.json(); });
+    };
+    DataService.prototype.getParameterPrice = function () {
+        return this.http.get('https://swarmnetbackendusa.herokuapp.com/parameters/price').map(function (res) { return res.json(); });
     };
     DataService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
